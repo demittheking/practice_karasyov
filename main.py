@@ -145,3 +145,87 @@ fig = px.box(df_renamed,
 
 fig.show()
 
+fig = px.box(df_renamed,
+             y="WindSpeed (m/s)",
+             title="Общая статистика скорости ветра")
+
+fig.show()
+
+fig = px.box(df_renamed,
+             y="Humidity (%)",
+             title="Общая статистика влажности")
+
+fig.show()
+
+df_corr = df_renamed.corr()
+df_corr
+
+x = list(df_corr.columns)
+y = list(df_corr.index)
+z = np.array(df_corr)
+
+fig = ff.create_annotated_heatmap(x = x,
+                                  y = y,
+                                  z = z,
+                                  annotation_text = np.around(z, decimals=2))
+fig.show()
+
+fig = px.scatter(df_renamed,
+                 x="PowerConsumption (W)",
+                 y="Temperature (°C)",
+                 title = "Потребление энергии vs Температура")
+fig.show()
+
+fig = px.scatter(df_renamed,
+                 x="PowerConsumption (W)",
+                 y="WindSpeed (m/s)",
+                 title = "Потребление энергии vs Скорость ветра")
+fig.show()
+
+fig = px.scatter(df_renamed,
+                 x="PowerConsumption (W)",
+                 y="Humidity (%)",
+                 title = "Потребление энергии vs Влажность")
+fig.show()
+
+df_renamed.plot.scatter(x='Temperature (°C)',y='PowerConsumption (W)' )
+
+fig, ax = plt.subplots(figsize = (20,15))
+plt.hist(df_renamed['PowerConsumption (W)'])
+plt.title('Распределение потребления', fontsize = 24)
+ax.set_xlabel('Все что угодно', fontsize = 24)
+ax.set_ylabel('y' , fontsize = 24)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.show()
+
+fig, ax = plt.subplots(figsize = (20,15))
+plt.hist(df_renamed['Temperature (°C)'])
+plt.title('Распределение температуры', fontsize = 24)
+ax.set_xlabel('Все что угодно', fontsize = 24)
+ax.set_ylabel('y' , fontsize = 24)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.show()
+
+fig, ax = plt.subplots(figsize = (20,15))
+plt.hist(df_renamed['Humidity (%)'])
+plt.title('Распределение влажности', fontsize = 24)
+ax.set_xlabel('Все что угодно', fontsize = 24)
+ax.set_ylabel('y' , fontsize = 24)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.show()
+
+fig, ax = plt.subplots(figsize = (20,15))
+plt.hist(df_renamed['WindSpeed (m/s)'])
+plt.title('Распределение скорости ветра', fontsize = 24)
+ax.set_xlabel('Все что угодно', fontsize = 24)
+ax.set_ylabel('y' , fontsize = 24)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
+plt.show()
+
+df_renamed.info()
+
+
