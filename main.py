@@ -73,3 +73,75 @@ fig.update_layout(
     }
 )
 fig.show()
+
+fig = px.box(df_renamed,
+        x=df_renamed["Datetime"].dt.month,
+        y="PowerConsumption (W)",
+        color=df_renamed["Datetime"].dt.month,
+        labels = {"x" : "Месяцы"},
+        title="Месячная статистика потребления электроэнергии ")
+
+fig.update_traces(width=0.5)
+fig.show()
+
+fig = px.box(df_renamed,
+        x=df_renamed["Datetime"].dt.day,
+        y="PowerConsumption (W)",
+        color=df_renamed["Datetime"].dt.day,
+        labels = {"x" : "Дни"})
+
+fig.update_traces(width=0.5)
+fig.show()
+
+fig = px.bar(grouped,
+              x=grouped.index,
+              y="PowerConsumption (W)",
+              labels = {'Month':'Месяцы'},
+              color = "PowerConsumption (W)",
+              title="Потребление электроэнергии в месяц")
+fig.update_traces(width=0.8)
+fig.update_layout(barmode='group', xaxis_tickangle=-45)
+fig.show()
+
+fig = px.bar(grouped,
+              x=grouped.index,
+              y="Temperature (°C)",
+              labels = {'Month':'Месяцы'},
+              color = "Temperature (°C)",
+              title="Температура в месяце")
+fig.update_traces(width=0.8)
+fig.update_layout(barmode='group', xaxis_tickangle=-45)
+fig.show()
+
+fig = px.bar(grouped,
+              x=grouped.index,
+              y="Humidity (%)",
+              labels = {'Month':'Месяцы'},
+              color = "Humidity (%)",
+              title="Влажность в месяце")
+fig.update_traces(width=0.8)
+fig.update_layout(barmode='group', xaxis_tickangle=-45)
+fig.show()
+
+fig = px.bar(grouped,
+              x=grouped.index,
+              y="WindSpeed (m/s)",
+              labels = {'Month':'Месяцы'},
+              color = "WindSpeed (m/s)",
+              title="Скорость ветра в месяце")
+fig.update_traces(width=0.8)
+fig.update_layout(barmode='group', xaxis_tickangle=-45)
+fig.show()
+
+fig = px.box(df_renamed,
+             y="PowerConsumption (W)",
+             title="Общая статистика потребления электроэнергии")
+
+fig.show()
+
+fig = px.box(df_renamed,
+             y="Temperature (°C)",
+             title="Общая статистика температуры")
+
+fig.show()
+
