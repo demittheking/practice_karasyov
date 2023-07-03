@@ -227,5 +227,3 @@ plt.yticks(fontsize=20)
 plt.show()
 
 df_renamed.info()
-
-
