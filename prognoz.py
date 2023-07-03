@@ -77,3 +77,18 @@ model.summary()
 # Train the LSTM model
 model.fit(X_train, y_train, epochs=20, batch_size=32, verbose=1)
 
+preds = model.predict(X_test)
+
+df_12 = df_12.drop('Datetime', axis = 1)
+
+next_month = df_12[["Temperature","Humidity","WindSpeed","GeneralDiffuseFlows","DiffuseFlows","Month"]].values.reshape(-1, 1, 6)
+
+#Сделаем прогнозирование используя модель
+next_month_preds = model.predict(next_month)
+
+# Добавим полученные спрогнозированные значения в датафрейм
+df_12["PowerConsumption"] = next_month_preds.flatten()
+
+# Написать обновленную информацию в такой же  csv файл
+df_12.to_csv("PredictData.csv", index=False)
+
