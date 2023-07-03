@@ -92,3 +92,15 @@ df_12["PowerConsumption"] = next_month_preds.flatten()
 # Написать обновленную информацию в такой же  csv файл
 df_12.to_csv("PredictData.csv", index=False)
 
+data = pd.read_csv("to12.csv")
+datapredict = pd.read_csv("PredictData.csv")
+mapedf = (np.mean(np.abs((data["PowerConsumption"] - datapredict["PowerConsumption"]) / data["PowerConsumption"])) * 100)
+mape = (np.mean(np.abs((y_test - preds) / y_test)) * 100)
+mae = mean_absolute_error(y_test, preds)
+mse = mean_squared_error(y_test, preds)
+rmse = np.sqrt(mse)
+r2 = (r2_score(y_test, preds))
+
+datapredict
+
+data
