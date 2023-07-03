@@ -31,3 +31,20 @@ df_1_to_11.to_csv("1to11.csv", index=False)
 df_12.to_csv("to12.csv", index=False)
 print(df_1_to_11.head())
 print(df_12.head())
+
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
+from keras.models import Sequential
+from keras.layers import LSTM, Dense
+import tensorflow as tf
+
+df_1_to_11 = df_1_to_11.drop('Datetime', axis = 1)
+
+# Разделим датасет на обучающую и тестовую выборку
+train_df, test_df = train_test_split(df_1_to_11, test_size=0.2, random_state=42)
+
+# Поменяем обучающую и тестовую data информацию в 3D массив для ввода LSTM
+X_train = train_df.drop("PowerConsumption", axis=1).values.reshape(-1, 1, 6)
+X_test = test_df.drop("PowerConsumption", axis=1).values.reshape(-1, 1, 6)
+y_train = train_df["PowerConsumption"].values.reshape(-1, 1)
+y_test = test_df["PowerConsumption"].values.reshape(-1, 1)
