@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import plotly.figure_factory as ff
 
-#Загрузка файла
+#Загрузка файла power consumption
 df = pd.read_csv("powerconsumption.csv")
 
 #Отобразить верхнюю часть данных
@@ -227,3 +227,4 @@ plt.yticks(fontsize=20)
 plt.show()
 
 df_renamed.info()
+
